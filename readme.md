@@ -1,13 +1,24 @@
-# day01 : 演習Ⅱについて
+# 演習Ⅱについて
 
 ## 体制
 
 - 教員・技術職員(1+3)：薗田　＋　山下，松尾，元島
 - TA(8)：喜安研M1(4)　＋　柴田研M1(4)
 
+|TA|名前||TA|名前|
+|---|---||---|---|
+|多0|技術職員foo||演6|三浦＠柴田研|
+|多1|木村＠喜安研||演7|本吉＠柴田研|
+|多2|小森＠喜安研||演8|山下（惠）＠柴田研|
+|多3|山下（翔）＠喜安研||||
+|多4|本村＠喜安研||||
+|多5|荒木＠柴田研||||
+
 # 部屋割
 
-[チューターごとの部屋割表](/lodgings.pdf)
+- [チューターごとの部屋割表](/lodgings.pdf)
+- [個人ごとの部屋割表](/lodgings_detail.pdf)
+
 ## 演習Ⅱの役割
 
 0. 概論（プログラミングの考え方）の続きと実践
@@ -76,9 +87,7 @@ Gitのバージョン管理データベースはどこにでも置くことが�
 よって，通常は自宅は勿論，演習Ⅱを行う多目的ホールからも演習室計算機へアクセスできません．しかし抜け道があります．それがVPN(Virtual Private Network)です．
 VPNを使って，通常ルートではアクセスできない自宅や多目的ホールからのアクセスを行います．
 
-[外部LANから長大LANに入る](/References/VPN/vpn.md)  
-
-
+[外部LANから長大LANに入る](/References/VPN/readme.md)  
 
 #### Git用バージョン管理データベース（通称レポジトリ）
 
@@ -95,7 +104,9 @@ ssh で演習室の端末に入る．当然パスワードを聞かれます．
 ```sh
 (Remote) $ mkdir ~/MyRepository
 (Remote) $ cd ~/MyRepository
-(Remote) $ git init --bare 2021psp2.git
+(Remote) $ mkdir 2021psp2.git
+(Remote) $ cd 2021psp2.git
+(Remote) $ git init --shared=true
 ```
 
 ssh抜けて自分のマシンの好きな場所（例えば ~/MyWork）にデータベースから開発中の最新バージョンのディレクトリをダウンロード
@@ -103,7 +114,7 @@ ssh抜けて自分のマシンの好きな場所（例えば ~/MyWork）にデ�
 ```sh
 (Remote) $ exit
 (Local) $ cd ~/MyWork
-(Local) $ git clone ssh://bes-master.cis.nagasaki-u.ac.jp/home/mother/sonoda/MyRepository/2021psp2.git
+(Local) $ git clone ssh://bes-master.cis.nagasaki-u.ac.jp:bxxxxxxx:/home/mother/bxxxxxxxxx/MyRepository/2021psp2.git
 ```
 
 これで，~/MyWork/2021psp2/ というディレクトリができます．
@@ -153,6 +164,6 @@ $ git pull
 ```
 1に戻る．
 
-
+詳しくは[Git](/References/Git.md)
 
 
