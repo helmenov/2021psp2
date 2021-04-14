@@ -1,5 +1,3 @@
-@echo off
-
 :: BatchGotAdmin
 :-------------------------------------
 REM  --> Check for permissions
@@ -35,4 +33,5 @@ set CISCO_SPLIT_INC_0_MASK=255.255.0.0
 set CISCO_SPLIT_INC_0_MASKLEN=16
 set OPENCONNECT_DIR=C:\Program Files (x86)\OpenConnect-GUI
 
-"%OPENCONNECT_DIR%\openconnect-gui.exe"
+cd "%OPENCONNECT_DIR%"
+openconnect.exe --script=vpnc-script.js v-conn.nagasaki-u.ac.jp
