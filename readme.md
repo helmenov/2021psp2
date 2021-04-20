@@ -19,6 +19,9 @@
 - [チューターごとの部屋割表](/lodgings.pdf)
 - [個人ごとの部屋割表](/lodgings_detail.pdf)
 
+![グループごとの席（多目的ホール）](/lodging_GroupSeets_TamokutekiHall.drawio.png)
+
+![グループごとの席（演習室）](lodging_GroupSeets_EnshuShitsu.drawio.png)
 ## 演習Ⅱの役割
 
 0. 概論（プログラミングの考え方）の続きと実践
