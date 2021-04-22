@@ -29,9 +29,10 @@ AnyConnectは原則通りの運用ですので，この抜け穴をAnyConnectで
 
 そこで，OpenConnectという通信方法を使います．
 
-[OpenConnect](https://www.infradead.org/openconnect/)
+[Linux，Mac用](https://www.infradead.org/openconnect/)
 
-[WindowsGUI](https://github.com/openconnect/openconnect-gui/releases)
+[Windows用](https://github.com/openconnect/openconnect-gui/releases)
+- インストール途中でインストールオプションを聞かれます．「console」にチェックを入れてください．
 
 このソフトウェアの環境変数を設定します．この設定をしたうえでVPNに繋ぐことができます．
 
