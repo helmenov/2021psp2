@@ -274,6 +274,8 @@ Date: Sun Apr 25 16:45:56 2021 +0900
 
 commitのあとの英数字の羅列が「ハッシュ」と呼ばれる，他と重なることのないIDである．最先端のセーブには「HEAD」という別名もある．
 
+##  特定のコミット（セーブ）直後にファイルを戻す．
+
 では，「最初の状態」とした4/25 16:45:56のセーブ直後に戻ろう．このように指定の仕方が困難なのでハッシュでいうと 4da152ee に戻ろう（ハッシュ指定だとはじめの8文字くらいで十分）
 
 ```bash
@@ -286,26 +288,28 @@ Changes not staged for commit:
         modified:   d03.py
 ```
 
-これでd03.pyを 4da152ee... のコミットIDの状態に戻すことができる．
+これでd03.pyを 4da152ee... のコミットIDが示すセーブ状態に戻すことができる．
+
+コミットIDの代わりに，
 
 ```
 $ git restore --source HEAD^1 d03.py
 ```
 でもいい．`^n`は「n代昔にさかのぼる」
 
-戻した上で少し改変したとする．
+さて，戻した上で少し改変したとする．そしてコミットセーブする（addを忘れないこと）．
 
 ```bash
 $ git add d03.py
 $ git commit -m "d03.py: 別の改変"
 $ git log --graph
-* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD | -> main)
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main)
 | Author: helmenov <kotaro1976@gmail.com>
 | Date: Sun Apr 25 17:29:25 2021 +0900
 | 
 |     d03.py: 別の改変
 | 
-* commit  022da560ab3915b397b40d9c1fafb7ba54bf82ce (HEAD -> main)
+* commit  022da560ab3915b397b40d9c1fafb7ba54bf82ce
 | Author: helmenov <kotaro1976@gmail.com>
 | Date: Sun Apr 25 17:02:43 2021 +0900
 | 
@@ -318,19 +322,111 @@ $ git log --graph
    最初の状態
 ```
 
-すなわち，4da152eeのセーブ状態に戻して改変したのだが，022da560のセーブ状態から改変ぶんが記録される．
+`--graph`オプションをつけて`git log`するとコミットの繋がりが表示される．
 
-d03.pyだけでなくすべてを戻したいときは，
+このlogを見ると，4da152eeのセーブ状態（まだ例外処理をしていない状態）に戻して，その後改変したのだが，実際は，022da560のセーブ状態（例外処理を加えた状態）からの改変ぶんが記録される．すなわちその改変とは，「例外処理をしていないコードへの変更＋その後の改変」が記録されている．
 
-もし，昔の状態を「見たいだけ」（改変するつもりがない）ならば
+つまり，例外処理を加えた事実は無かったことにせず，きちんと残しておく，ということである．
+
+## 特定のコミット直後にすべてのファイルを戻したい．(restore をすべてのファイルに対して行う)
+
+`git restore --source commitID file`はあるファイルだけを戻すのだったが，すべてのファイルを戻したいなら，`git revert commitID`
+
+##  特定のコミット直後を見たい
+
+`restore`と`revert` は，特定のコミット直後の状態に戻すような改変を加える処理であった．
+
+これに対し，現在のコミット022da560 を維持したまま，特定のコミット4da152ee 直後の状態をリロードする処理もある．ただし，リロードした後に別の改変を加えると，コミット022da560へのつながりが切れてしまうので，あくまでリロードだけ（見るだけ）に留めて，見終えたら元のコミット022da560に足を戻すことをすすめる．
+
+
 ```bash
 $ git checkout コミットID
 ```
+
+## 特定のコミット直後に「リセット」したい（その後のコミットを歴史から消す）
 
 もし，「見たいだけ」なのではなく，すべてをやり直したいのなら
 ```
 $ git reset --hard コミットID
 ```
+
+## gitコマンドをやり直したい．
+
+commitやresetというコマンドの履歴を見ることができる．
+
+```
+$ git reflog
+```
+
+例えば，先程の 「別の改変」コミット6a4e1e35 のあとで，「最初の状態」コミット4da152eeまで「リセット」したとする．
+
+```
+$ git reset --hard 4da152ee 
+HEAD is now at  4da152e 最初の状態
+```
+
+この状態で，logを見ると
+
+```
+$ git log --graph
+* commit  4da152ee5cd582c0b0b1f7f2be107284baf9a0ab
+ Author: helmenov <kotaro1976@gmail.com>
+ Date: Sun Apr 25 16:45:56 2021 +0900
+ 
+   最初の状態
+```
+
+すなわち，その後のcommit（セーブ）が無くなっている．「リセットを間違った」と言うときは，resetコマンドをやり直せばよい．
+`log`コマンドと似ている`reflog`というコマンドを使うと，commit と reset をすべて表示する．
+
+```
+$ git reflog
+4da152e (HEAD -> main) HEAD@{0}:  reset:  moving to 4da152ee
+6a4e1e3 HEAD@{1}:  commit:  d03.py:  別の改変
+022da56 HEAD@{2}:  commit:  d03.py:  例外処理した
+4da152e (HEAD-> main)  HEAD@{3}: commit (initial): 最初の状態
+```
+
+まず，`log`と違い，すべてのcommit と reset が表示されている．
+
+また，左端の英数字がコミットIDだが，4da152eが2つあることに気づくだろう．というわけで，
+
+またしても，特定のコミット HEAD@{1}にリセットすればよい．コミットIDでリセット位置を指定していないことに注意．
+
+```
+$ git reset --hard HEAD@{1}
+
+$ git log --graph 
+
+$ git log --graph
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main)
+| Author: helmenov <kotaro1976@gmail.com>
+| Date: Sun Apr 25 17:29:25 2021 +0900
+| 
+|     d03.py: 別の改変
+| 
+* commit  022da560ab3915b397b40d9c1fafb7ba54bf82ce
+| Author: helmenov <kotaro1976@gmail.com>
+| Date: Sun Apr 25 17:02:43 2021 +0900
+| 
+|    d03.py: 例外処理した
+| 
+* commit  4da152ee5cd582c0b0b1f7f2be107284baf9a0ab
+ Author: helmenov <kotaro1976@gmail.com>
+ Date: Sun Apr 25 16:45:56 2021 +0900
+ 
+   最初の状態
+
+$ git reflog
+6a4e1e3 (HEAD -> main) HEAD@{0}:  reset:  moving to HEAD@{1}
+4da152e HEAD@{1}:  reset:  moving to 4da152ee
+6a4e1e3 (HEAD -> main) HEAD@{2}:  commit:  d03.py:  別の改変
+022da56 HEAD@{3}:  commit:  d03.py:  例外処理した
+4da152e HEAD@{4}: commit (initial): 最初の状態
+```
+
+reflogには最後のリセットし直しのリセットも記録されている．
+
 
 ## git で，ローカルのディレクトリを，演習室のディレクトリにバックアップしよう．
 
@@ -351,10 +447,11 @@ $ uname -a
 Linux bes-master 3.10.0-1160.11.1.el7.x86_64 #1 SMP Fri Dec 18 16:34:56 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
+
 ### 演習室にバックアップ先を作る（最初の1回だけ）
 
 1. `~/MyRepository/2021psp2.git`というディレクトリを作って
-2. ディレクトリをgit対応にして
+2. ディレクトリをgit対応にして （他の人も見えるように `--shared = true`オプションをつける）
 3. 演習室を抜けます．
 
 
@@ -364,9 +461,153 @@ $ cd MyRepository
 $ mkdir 2021psp2.git
 $ cd 2021psp2.git
 $ git init --shared=true
+```
+
+これでレポジトリ（git対応ディレクトリのこと）ができました．
+
+あとで使うので絶対パス（場所）を確認して，メモしておきましょう．
+
+```
+$ pwd
+/home/mother/sonoda/MyRepository/2021psp2.git
+```
+
+あとはリモートPCから抜けます．（ログアウト）
+
+```
 $ exit
 ```
 
 
 ### 自分のノーパソで．
+
+まず，リモートバックアップ先に演習室の先程のレポジトリを`origin`という名前でブックマークします．
+
+```
+$ git remote add origin ssh://sonoda@bes-master.cis.nagasaki-u.ac.jp:/home/mother/sonoda/MyRepository/2021psp2.git
+```
+
+`xxx://yyy` という部分は 「`xxx`というプロトコルの`yyy`というURL」と読みます．`http://www.google.com`が，HTTP通信で`www.google.com`というURL，と読むように今回は，sshプロトコル(Secure Shell通信)で`bes-master.cis.nagasaki-u.ac.jp`というURLをブックマークしています．
+
+`zzz@yyy`という部分は，「`yyy`というURL上の`zzz`というユーザ」と読みます．`sonoda@bes-master.cis.nagasaki-u.ac.jp`は，`bes-master.cis.nagasaki-u.ac.jp`というマシンの`sonoda`というアカウントユーザです．メールアドレスもこの書き方ですね．
+
+そのうしろの`: /home/mother/sonoda/MyRepository/2021psp2.git` は先程メモしたディレクトリの絶対パス（場所）です．
+
+```
+$ git push origin main 
+Enter passphrase for key '/home/kotaro/.ssh/id_rsa':
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (12/12), 1.30 KiB | 666.00 KiB/s, done.
+Total 12 (delta 2), reused 0 (delta 0), pack-reused 0
+To ssh://bes-master.cis.nagasaki-u.ac.jp:/home/mother/sonoda/MyRepository/2021psp2.git
+ * [new branch]      main -> main
+```
+
+この`push リモートバックアップ先の名前  main`でリモートバックアップできました．logを確認すると，`origin/main`と文字列が増えています．
+つまり，ローカルのmain と リモートoriginのmain という2つのレポジトリがある，ということです．
+
+```
+$ git log --graph
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main, origin/main)
+...
+```
+
+## ここでまたローカルPCのファイルをいじる
+
+バックアップした後に，またソースコードを書き加えたり，ファイルを追加したり，いろいろします．そしてaddしてcommitするのですが，その状態でlogを見てみます．
+
+```
+$ git add d03.py
+$ git commit -m "left -> right"
+$ git log
+$ git log --graph
+* commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0 (HEAD -> main)
+| Author: Kotaro Sonoda <sonoda@cis.nagasaki-u.ac.jp>
+| Date:   Wed Apr 28 00:02:47 2021 +0900
+| 
+|         d03.py:  left -> right
+|
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (origin/main)
+|
+...
+```
+
+コミットが追加されていますが，リモートレポジトリoriginの状態は変わっていません．先程と同じように，`git push` すると，リモートの状態をローカルの状態に合わせます．
+
+ただし，リモートレポジトリの中身は別の人が変更しているかもしれません．なので，`git commit`の後に，すぐ`git push`するのではなく先に`git pull`（ローカルに，リモートの変更を取り込む）してから`git push`します．
+
+(※ 本当は，pullではなく，fetch（リモートの状態をローカルの作業場以外のところにコピー）して，merge（2つの作業場を合わせて1つにする)してコピーをローカルに取り込むのが正しい流れですが，初心者は pull でいいです）
+
+```
+$ git pull origin main
+$ git log
+*             commit  9740140fffaa9a0d5f793caa63e16cbef1b9edf7 (HEAD -> main)
+|  \          Merge:  3be4208  b311fa3
+|    |         Date:  Wed Apr 28 00:39:21  2021  +0900
+|    |   
+|    |                         Merge branch 'main'  of ssh://..........
+|    | 
+*   |          commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0
+|    |          Author: Kotaro Sonoda <sonoda@cis.nagasaki-u.ac.jp>
+|    |         Date:   Wed Apr 28 00:02:47 2021 +0900
+|    |
+|    |                         d03.py:  left -> right
+|    |
+|    *        commit  b311fa3126e44539c711861cb0819340e239530  (origin/main)
+|  /          Author:   Nobunaga Oda <nobunaga@cis.nagasaki-u.ac.jp>
+|             Date:   .....
+|
+|                               ちょっと変えるね
+|
+*               commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 
+|
+...
+```
+
+`pull`したら，誰かの変更がリモートにあったようで，それを取り込みました．グラフを見ても，ローカルの線と，リモートの誰かの線に分かれていましたが，PCが自動的に1つに合流させる変更をしたようです．
+
+
+この状態でリモートにpushします．
+
+```
+$ git push
+$ git log
+*       commit  9740140fffaa9a0d5f793caa63e16cbef1b9edf7 (HEAD -> main,  origin/main)
+|  \    Merge:  3be4208  b311fa3
+|    |  Date:  Wed Apr 28 00:39:21  2021  +0900
+|    |   
+|    |        Merge branch 'main'  of ssh://..........
+|    | 
+*   |          commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0
+|    |          Author: Kotaro Sonoda <sonoda@cis.nagasaki-u.ac.jp>
+|    |         Date:   Wed Apr 28 00:02:47 2021 +0900
+|    |
+|    |                         d03.py:  left -> right
+|    |
+|    *    commit  b311fa3126e44539c711861cb0819340e239530
+|  /      Author:   Nobunaga Oda <nobunaga@cis.nagasaki-u.ac.jp>
+|         Date:   .....
+|
+|                 ちょっと変えるね
+|
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 
+|
+...
+```
+
+うまく行きました．
+
+## 今日の課題
+
+1. 自分のノートパソコン上の演習2用のディレクトリをgit対応にして，ローカルレポジトリを作り，現在の状態をcommitせよ．
+   
+   `2021psp2`ディレクトリの下には，day01とday02というディレクトリがあり，それぞれのディレクトリの下に，ソースコードとレポートのファイルがあるはずである．
+   `2021psp2`ディレクトリのすぐ下の位置で，`git init`して，すべてのファイルを`git add`で管理対象にせよ．また，`git commit -m "最初のコミット"`などとコメントを残せ．
+
+2. 先週作成したメソッド・関数を使い，マウスクリックした方向を向かせて，その方向にクリックした座標と亀の座標との距離を半分に縮めるよう前進させる，というのを繰り返すプログラムを作成し，d03.pyとせよ．
+3. d03.pyもadd して commit せよ
+4. 演習室のコンピュータにリモートログインし，リモートレポジトリを作成せよ．ローカルレポジトリをリモートレポジトリにバックアップせよ．
 
