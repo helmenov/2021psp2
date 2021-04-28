@@ -232,7 +232,7 @@ index bde9aeb..27a765f 100644
 
 ```bash
 $ git status
-On branch main
+On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
@@ -241,7 +241,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 $ git add d03.py
 $ git status
-On branch main
+On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
         modified:   d03.py
@@ -259,7 +259,7 @@ $ git commit -m "d03.py: 例外処理した"
 
 ```bash
 $ git log
-commit  022da560ab3915b397b40d9c1fafb7ba54bf82ce (HEAD -> main)
+commit  022da560ab3915b397b40d9c1fafb7ba54bf82ce (HEAD -> master)
 Author: helmenov <kotaro1976@gmail.com>
 Date: Sun Apr 25 17:02:43 2021 +0900
 
@@ -283,7 +283,7 @@ commitのあとの英数字の羅列が「 **ハッシュ** 」と呼ばれる�
 ```bash
 $ git restore --source 4da152ee d03.py
 $ git status
-On branch main
+On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
@@ -304,7 +304,7 @@ $ git restore --source HEAD^1 d03.py
 $ git add d03.py
 $ git commit -m "d03.py: 別の改変"
 $ git log --graph
-* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main)
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> master)
 | Author: helmenov <kotaro1976@gmail.com>
 | Date: Sun Apr 25 17:29:25 2021 +0900
 | 
@@ -383,7 +383,7 @@ $ git log --graph
 
 ```bash
 $ git reflog
-4da152e (HEAD -> main) HEAD@{0}:  reset:  moving to 4da152ee
+4da152e (HEAD -> master) HEAD@{0}:  reset:  moving to 4da152ee
 6a4e1e3 HEAD@{1}:  commit:  d03.py:  別の改変
 022da56 HEAD@{2}:  commit:  d03.py:  例外処理した
 4da152e (HEAD-> main)  HEAD@{3}: commit (initial): 最初の状態
@@ -401,7 +401,7 @@ $ git reset --hard HEAD@{1}
 $ git log --graph 
 
 $ git log --graph
-* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main)
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> master)
 | Author: helmenov <kotaro1976@gmail.com>
 | Date: Sun Apr 25 17:29:25 2021 +0900
 | 
@@ -420,9 +420,9 @@ $ git log --graph
    最初の状態
 
 $ git reflog
-6a4e1e3 (HEAD -> main) HEAD@{0}:  reset:  moving to HEAD@{1}
+6a4e1e3 (HEAD -> master) HEAD@{0}:  reset:  moving to HEAD@{1}
 4da152e HEAD@{1}:  reset:  moving to 4da152ee
-6a4e1e3 (HEAD -> main) HEAD@{2}:  commit:  d03.py:  別の改変
+6a4e1e3 (HEAD -> master) HEAD@{2}:  commit:  d03.py:  別の改変
 022da56 HEAD@{3}:  commit:  d03.py:  例外処理した
 4da152e HEAD@{4}: commit (initial): 最初の状態
 ```
@@ -454,7 +454,9 @@ Linux bes-master 3.10.0-1160.11.1.el7.x86_64 #1 SMP Fri Dec 18 16:34:56 UTC 2020
 
 1. `~/MyRepository/2021psp2.git`というディレクトリを作って
 2. ディレクトリをgit対応にして （他の人も見えるように `--shared = true`オプションをつける）
-3. 演習室を抜けます．
+3. そのディレクトリの下で，以下のgitコマンドを打つ．（4/28追記）
+   `git config --local receive.denyCurrentBranch updateInstead`
+4. 演習室を抜けます．
 
 
 ```bash
@@ -463,6 +465,7 @@ $ cd MyRepository
 $ mkdir 2021psp2.git
 $ cd 2021psp2.git
 $ git init --shared=true
+$ git config --local receive.denyCurrentBranch updateInstead
 ```
 
 これでレポジトリ（git対応ディレクトリのこと）ができました．
@@ -496,7 +499,7 @@ $ git remote add origin ssh://sonoda@bes-master.cis.nagasaki-u.ac.jp:/home/mothe
 そのうしろの`: /home/mother/sonoda/MyRepository/2021psp2.git` は先程メモしたディレクトリの絶対パス（場所）です．
 
 ```bash
-$ git push origin main 
+$ git push origin master 
 Enter passphrase for key '/home/kotaro/.ssh/id_rsa':
 Enumerating objects: 12, done.
 Counting objects: 100% (12/12), done.
@@ -505,15 +508,15 @@ Compressing objects: 100% (6/6), done.
 Writing objects: 100% (12/12), 1.30 KiB | 666.00 KiB/s, done.
 Total 12 (delta 2), reused 0 (delta 0), pack-reused 0
 To ssh://bes-master.cis.nagasaki-u.ac.jp:/home/mother/sonoda/MyRepository/2021psp2.git
- * [new branch]      main -> main
+ * [new branch]      master -> master
 ```
 
-この`push リモートバックアップ先の名前  main`でリモートバックアップできました．logを確認すると，`origin/main`と文字列が増えています．
-つまり，ローカルのmain と リモートoriginのmain という2つの系統がある，ということです．
+この`push リモートバックアップ先の名前  master`でリモートバックアップできました．logを確認すると，`origin/master`と文字列が増えています．
+つまり，ローカルのmain と リモートoriginのmaster という2つの系統がある，ということです．
 
 ```bash
 $ git log --graph
-* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main, origin/main)
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (HEAD -> main, origin/master)
 ...
 ```
 
@@ -526,13 +529,13 @@ $ git add d03.py
 $ git commit -m "left -> right"
 $ git log
 $ git log --graph
-* commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0 (HEAD -> main)
+* commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0 (HEAD -> master)
 | Author: helmenov <kotaro1976@gmail.com>
 | Date:   Wed Apr 28 00:02:47 2021 +0900
 | 
 |         d03.py:  left -> right
 |
-* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (origin/main)
+* commit  6a4e1e35b83fa702b7eb1b8ebd7dd373ad79d086 (origin/master)
 |
 ...
 ```
@@ -544,13 +547,13 @@ $ git log --graph
 (※ 本当は，`pull` ではなく，`fetch`（リモートの状態をローカルの作業場以外のところにコピー）して， `merge` （2つの作業場を合わせて1つにする)してコピーをローカルに取り込むのが正しい流れですが，初心者は  `pull`  でいいです）
 
 ```bash
-$ git pull origin main
+$ git pull origin master
 $ git log
-*             commit  9740140fffaa9a0d5f793caa63e16cbef1b9edf7 (HEAD -> main)
+*             commit  9740140fffaa9a0d5f793caa63e16cbef1b9edf7 (HEAD -> master)
 |  \          Merge:  3be4208  b311fa3
 |    |         Date:  Wed Apr 28 00:39:21  2021  +0900
 |    |   
-|    |                         Merge branch 'main'  of ssh://..........
+|    |                         Merge branch 'master'  of ssh://..........
 |    | 
 *   |          commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0
 |    |          Author: helmenov <kotaro1976@gmail.com>
@@ -558,7 +561,7 @@ $ git log
 |    |
 |    |                         d03.py:  left -> right
 |    |
-|    *        commit  b311fa3126e44539c711861cb0819340e239530  (origin/main)
+|    *        commit  b311fa3126e44539c711861cb0819340e239530  (origin/master)
 |  /          Author:   Nobunaga Oda <nobunaga@cis.nagasaki-u.ac.jp>
 |             Date:   .....
 |
@@ -577,11 +580,11 @@ $ git log
 ```bash
 $ git push
 $ git log
-*       commit  9740140fffaa9a0d5f793caa63e16cbef1b9edf7 (HEAD -> main,  origin/main)
+*       commit  9740140fffaa9a0d5f793caa63e16cbef1b9edf7 (HEAD -> master,  origin/master)
 |  \    Merge:  3be4208  b311fa3
 |    |  Date:  Wed Apr 28 00:39:21  2021  +0900
 |    |   
-|    |        Merge branch 'main'  of ssh://..........
+|    |        Merge branch 'master'  of ssh://..........
 |    | 
 *   |          commit  3be4208aee8aa6114c501fd5bb5b40f937ded8c0
 |    |          Author: helmenov <kotaro1976@gmail.com>
