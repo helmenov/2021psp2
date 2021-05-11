@@ -6,27 +6,25 @@
 
 ### 例：平方根を求める
 
-<!-- $\sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/6BF6Fif0ho.svg">を求めてみよう．
+$\sqrt{3}$を求めてみよう．
 
-すなわち<!-- $x^2 = 3$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/vA9qf5uwFa.svg">を満たす$x$を求めたい．
+すなわち$x^2 = 3$を満たす$x$を求めたい．
 
-<!-- $$
+$$
 \begin{align}
 x^2 - 3 &= 0 \\
 \leftrightarrow (x-\sqrt{3})(x+\sqrt{3}) &= 0
 \end{align}
-$$ --> 
+$$
 
-<div align="center"><img style="background: white;" src="../../svg/flg5Kp6U7D.svg"></div>
-
-であるから，解は<!-- $x = \pm \sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/XJTqDqoNn8.svg">である．このように数式を同値変形していき，最終的に <!-- $x = \bigcirc$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/3qsSUFkQPc.svg"> の形で求めることを **「解析的に解く」** と言う．
+であるから，解は$x = \pm \sqrt{3}$である．このように数式を同値変形していき，最終的に $x = \bigcirc$ の形で求めることを **「解析的に解く」** と言う．
 
 数式によっては，上のように同値変形していくことが困難で「解析的に解く」ことができない場合もある．その場合，すぐに試すのは次の処理であろう．
 
-1. まず，適当な数<!-- $x_0=3$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/hdUQqFhWHG.svg">を <!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/hCh23aRfIG.svg"> に入れて<!-- $x^2$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/iejb18xT8s.svg">を計算してみると<!-- $9$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/mhyZFF0UxH.svg">， これは左辺の<!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/bpM1yDqkVN.svg"> よりだいぶ大きかった．
-2. 先ほどの数<!-- $x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/atMoEHufUc.svg">より小さい数<!-- $x_1=2$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/k74Z6bJ6Qd.svg"> （ただし<!-- $x_1 < x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/pRcThNd51G.svg">） を<!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/hZmMbWXfTy.svg">に入れて再度計算してみると<!-- $4$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/d7pbxDpQ9t.svg">，少し <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/5jAeN2XZr8.svg"> に近づいたがまだ <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/4fDRxYCDkJ.svg"> より大きい．
-3. 今度はさらにだいぶ小さい数<!-- $x_2=1$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/8rszmH3lct.svg">（ただし<!-- $x_2 < x_1 < x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/ef0M4O62Q2.svg">）を<!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/hQqbOfCLv9.svg">に入れて再度計算してみると<!-- $1$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/opGBWZ1kKW.svg">， 計算結果<!-- $x^2$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/JyAoJlUAct.svg">が<!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/iL6pJIou4g.svg"> より小さくなった．
-4. 少し大きい数<!-- $x_3=1.8$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/itwQSP0XUd.svg">（ただし<!-- $x_2 < x_3 < x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="../../svg/pluTWjrEUt.svg">）を入れて計算すると$3.24$， 結果が$3$ より少し大きくなった．
+1. まず，適当な数$x_0=3$を $x$ に入れて$x^2$を計算してみると$9$， これは左辺の$3$ よりだいぶ大きかった．
+2. 先ほどの数$x_0$より小さい数$x_1=2$ （ただし$x_1 < x_0$） を$x$に入れて再度計算してみると$4$，少し $3$ に近づいたがまだ $3$ より大きい．
+3. 今度はさらにだいぶ小さい数$x_2=1$（ただし$x_2 < x_1 < x_0$）を$x$に入れて再度計算してみると$1$， 計算結果$x^2$が$3$ より小さくなった．
+4. 少し大きい数$x_3=1.8$（ただし$x_2 < x_3 < x_1$）を入れて計算すると$3.24$， 結果が$3$ より少し大きくなった．
 5. 少し小さい数$x_4=1.7$（ただし$x_2 < x_4 < x_3 < x_1$）を入れて$2.89$，これを $3$ と比べると小さいので，少し大きい数$x_5=1.75$を入れて$3.06$，これを $3$ と比べ，
 6. $\dots$ というのを繰り返していき，
 7. 最終的に $x_n=1.732$ を $x^2$に代入したとき $3$ に十分近くなったので，解は$x = 1.732$
