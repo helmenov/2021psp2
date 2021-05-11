@@ -157,7 +157,7 @@ for x in x_list:
 
 このような「コピペ＆数字の書き換え」はやめよう！その代わりに，
 
-1. コピペして作った新しいソースコードをモジュール`myfunc.py`にする．書き換える部分を引数変数にして関数`solve_sqrt`に仕立てる．
+1. コピペして作った新しいソースコードをモジュール`myfunc.py`にする．書き換える部分を引数変数にして関数`solve_sqrt()`に仕立てる．
 2. `solve_sqrt5.py`の冒頭で `import myfunc`と書いて，`myfunc.solve_sqrt(5)`により$\sqrt{5}$を解く．
 
 ## 恒等式をも引数にして，適当な恒等式の解を求めよ（課題2）
@@ -176,7 +176,7 @@ def Differential(TargetFunc, x):
     h = 1e-4 
      return (TargetFunc(x+h) - TargetFunc(x))/h 
 
-def Newton(TargetFunc, x, n_loop = 10000, error_limit = 0.001): 
+def NewtonSolver(TargetFunc, x, n_loop = 10000, error_limit = 0.001): 
      for n in range(n_loop): 
          try: 
             epsilon = TargetFunc(x)/Differential(TargetFunc, x) 
@@ -210,7 +210,7 @@ nLoop = # 繰り返し回数
 errorLimit = #　解の収束判定条件
 
 for x_0 in xList: 
-    x = Newton(TargetFunc=FuncOne, x=x_0, n_loop=nLoop, error_limit=errorLimit)
+    x = NewtonSolver(TargetFunc=FuncOne, x=x_0, n_loop=nLoop, error_limit=errorLimit)
     print(x) 
 ```
 
