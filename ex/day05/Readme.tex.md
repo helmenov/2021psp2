@@ -130,6 +130,8 @@ class GF7:
 
 クラスは，他のクラスを引き継ぐことができます．
 
+以下のコードは，Petクラスの定義．このPetクラスを引き継ぐDogクラスとCatクラスを作ってみます．
+
 ```py
 class Pet: 
     def __init__(self,name='noname',gene='unknown',age=99):
