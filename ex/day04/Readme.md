@@ -6,55 +6,67 @@
 
 ### 例：平方根を求める
 
-$\sqrt{3}$を求めてみよう．
+<!-- $\sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B3%7D">を求めてみよう．
 
-すなわち$x^2 = 3$を満たす$x$を求めたい．
+すなわち<!-- $x^2 = 3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2%20%3D%203">を満たす<!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x">を求めたい．
 
-$$
+<!-- $$
 x^2 - 3 = 0 
-$$
+$$ --> 
 
-$$
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2%20-%203%20%3D%200%20"></div>
+
+<!-- $$
 \leftrightarrow (x-\sqrt{3})(x+\sqrt{3}) = 0
-$$
+$$ --> 
 
-であるから，解は$x = \pm \sqrt{3}$である．このように数式を同値変形していき，最終的に $x = \bigcirc$ の形で求めることを **「解析的に解く」** と言う．
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cleftrightarrow%20(x-%5Csqrt%7B3%7D)(x%2B%5Csqrt%7B3%7D)%20%3D%200"></div>
+
+であるから，解は<!-- $x = \pm \sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%20%3D%20%5Cpm%20%5Csqrt%7B3%7D">である．このように数式を同値変形していき，最終的に <!-- $x = \bigcirc$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%20%3D%20%5Cbigcirc"> の形で求めることを **「解析的に解く」** と言う．
 
 数式によっては，上のように同値変形していくことが困難で「解析的に解く」ことができない場合もある．その場合，すぐに試すのは次の処理であろう．
 
-1. まず，適当な数$x_0=3$を $x$ に入れて$x^2$を計算してみると$9$， これは左辺の$3$ よりだいぶ大きかった．
-2. 先ほどの数$x_0$より小さい数$x_1=2$ （ただし$x_1 < x_0$） を$x$に入れて再度計算してみると$4$，少し $3$ に近づいたがまだ $3$ より大きい．
-3. 今度はさらにだいぶ小さい数$x_2=1$（ただし$x_2 < x_1 < x_0$）を$x$に入れて再度計算してみると$1$， 計算結果$x^2$が$3$ より小さくなった．
-4. 少し大きい数$x_3=1.8$（ただし$x_2 < x_3 < x_1$）を入れて計算すると$3.24$， 結果が$3$ より少し大きくなった．
-5. 少し小さい数$x_4=1.7$（ただし$x_2 < x_4 < x_3 < x_1$）を入れて$2.89$，これを $3$ と比べると小さいので，少し大きい数$x_5=1.75$を入れて$3.06$，これを $3$ と比べ，
-6. $\dots$ というのを繰り返していき，
-7. 最終的に $x_n=1.732$ を $x^2$に代入したとき $3$ に十分近くなったので，解は$x = 1.732$
+1. まず，適当な数<!-- $x_0=3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0%3D3">を <!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x"> に入れて<!-- $x^2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2">を計算してみると<!-- $9$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=9">， これは左辺の<!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> よりだいぶ大きかった．
+2. 先ほどの数<!-- $x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0">より小さい数<!-- $x_1=2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1%3D2"> （ただし<!-- $x_1 < x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1%20%3C%20x_0">） を<!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x">に入れて再度計算してみると<!-- $4$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=4">，少し <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> に近づいたがまだ <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> より大きい．
+3. 今度はさらにだいぶ小さい数<!-- $x_2=1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_2%3D1">（ただし<!-- $x_2 < x_1 < x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_2%20%3C%20x_1%20%3C%20x_0">）を<!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x">に入れて再度計算してみると<!-- $1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=1">， 計算結果<!-- $x^2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2">が<!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> より小さくなった．
+4. 少し大きい数<!-- $x_3=1.8$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_3%3D1.8">（ただし<!-- $x_2 < x_3 < x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_2%20%3C%20x_3%20%3C%20x_1">）を入れて計算すると<!-- $3.24$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3.24">， 結果が<!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> より少し大きくなった．
+5. 少し小さい数<!-- $x_4=1.7$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_4%3D1.7">（ただし<!-- $x_2 < x_4 < x_3 < x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_2%20%3C%20x_4%20%3C%20x_3%20%3C%20x_1">）を入れて<!-- $2.89$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=2.89">，これを <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> と比べると小さいので，少し大きい数<!-- $x_5=1.75$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_5%3D1.75">を入れて<!-- $3.06$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3.06">，これを <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> と比べ，
+6. <!-- $\dots$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cdots"> というのを繰り返していき，
+7. 最終的に <!-- $x_n=1.732$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_n%3D1.732"> を <!-- $x^2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2">に代入したとき <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> に十分近くなったので，解は<!-- $x = 1.732$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%20%3D%201.732">
 
 しかし当てずっぽうに数を試しては大変である．もっと賢い方法として**ニュートン法**というのが知られている．
 
-先ほどの式を $f(x) = 0$，すなわち $f(x) = x^2-3$とする．真の解が $x$ として，それに近い $x_0 = x + \epsilon$の周りで $f(x)$をテイラー展開近似すると，
+先ほどの式を <!-- $f(x) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%200">，すなわち <!-- $f(x) = x^2-3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%20x%5E2-3">とする．真の解が <!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x"> として，それに近い <!-- $x_0 = x + \epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0%20%3D%20x%20%2B%20%5Cepsilon">の周りで <!-- $f(x)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)">をテイラー展開近似すると，
 
-$$f(x) = f(x_0 - \epsilon) = f(x_0) - f^{\prime}(x_0)\epsilon + O(\epsilon)$$
+<!-- $$f(x) = f(x_0 - \epsilon) = f(x_0) - f^{\prime}(x_0)\epsilon + O(\epsilon)$$ --> 
 
-となり，$\epsilon$の2 次以降$O(\epsilon)$を無視すると， $f(x) = 0$となる $\epsilon$ は
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
 
-$$\epsilon = \frac{f(x_0)}{f^{\prime}(x_0)}$$
+となり，<!-- $\epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cepsilon">の2 次以降<!-- $O(\epsilon)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=O(%5Cepsilon)">を無視すると， <!-- $f(x) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%200">となる <!-- $\epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cepsilon"> は
 
-である．
+<!-- $$\epsilon = \frac{f(x_0)}{f^{\prime}(x_0)}$$ --> 
 
-$x_0$から$\epsilon$ だけ引けば，真の値 $x$ に近づくはずなので，
-
-$$x_{n+1} = x_n - \frac{f(x_n)}{f^{\prime}(x_n)}$$
-
-という次の値を選んでいけば都合がよい．いま  $f(x) = x^2-3$， その導関数 $f^{\prime}(x) = 2x$なので，
-
-$$x_{n+1} = x_n - \frac{x_n^2-3}{2x_n}$$
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
 
 である．
 
-具体的に $x_0$として $3$ を代入してみよう．上の漸化式から，次に試す $x_1$ は $3 - \frac{3^2-3}{2 \cdot 3} = 3 - \frac{6}{6} = 3 - 1 = 2$ ，その次に試す $x_2$は $2-\frac{2^2-3}{2\cdot 2}= 2-\frac{1}{4} = 1.75$と求まる．
+<!-- $x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0">から<!-- $\epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cepsilon"> だけ引けば，真の値 <!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x"> に近づくはずなので，
 
-$x_1$から$x_{10}$までを逐次「`i :`$x_i$ の値」という形で表示する python プログラムコードは以下のようになる．
+<!-- $$x_{n+1} = x_n - \frac{f(x_n)}{f^{\prime}(x_n)}$$ --> 
+
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+
+という次の値を選んでいけば都合がよい．いま  <!-- $f(x) = x^2-3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%20x%5E2-3">， その導関数 <!-- $f^{\prime}(x) = 2x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x)%20%3D%202x">なので，
+
+<!-- $$x_{n+1} = x_n - \frac{x_n^2-3}{2x_n}$$ --> 
+
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+
+である．
+
+具体的に <!-- $x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0">として <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> を代入してみよう．上の漸化式から，次に試す <!-- $x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1"> は <!-- $3 - \frac{3^2-3}{2 \cdot 3} = 3 - \frac{6}{6} = 3 - 1 = 2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3%20-%20%5Cfrac%7B3%5E2-3%7D%7B2%20%5Ccdot%203%7D%20%3D%203%20-%20%5Cfrac%7B6%7D%7B6%7D%20%3D%203%20-%201%20%3D%202"> ，その次に試す <!-- $x_2$は $2-\frac{2^2-3}{2\cdot 2}= 2-\frac{1}{4} = 1.75$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_2%24%E3%81%AF%20%242-%5Cfrac%7B2%5E2-3%7D%7B2%5Ccdot%202%7D%3D%202-%5Cfrac%7B1%7D%7B4%7D%20%3D%201.75">と求まる．
+
+<!-- $x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1">から<!-- $x_{10}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7B10%7D">までを逐次「`i :`<!-- $x_i$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_i"> の値」という形で表示する python プログラムコードは以下のようになる．
 
 ```py
 #%% newton1.py 
@@ -65,11 +77,11 @@ for n in range(10):
     print(n+1,':',x)
 ```
 
-上記のプログラム `newton1.py` では $x_{10}$まで求めたが，同様に `range` の引数を $50$ にすれば 正解 $x_{50}$ まで求めることができる．
+上記のプログラム `newton1.py` では <!-- $x_{10}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7B10%7D">まで求めたが，同様に `range` の引数を 50 にすれば <!-- $x_{50}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7B50%7D"> まで求めることができる．
 
 しかし，おそらく数回後，ほとんど変わらない数字が表示されるであろう．つまり収束している．よって収束していると判断した段階で繰り返し処理から脱出するように書き換えよう．
 
-以下の `newton2.py` は，1 万回繰り返し， 更新量の2乗 $(x_{n+1} - x_n)^2$  が `0.001` より小さい場合には，繰り返しをその時点で脱出する．
+以下の `newton2.py` は，1 万回繰り返し， 更新量の2乗 <!-- $(x_{n+1} - x_n)^2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=(x_%7Bn%2B1%7D%20-%20x_n)%5E2">  が `0.001` より小さい場合には，繰り返しをその時点で脱出する．
 
 ```py
 #%% newton2.py 
@@ -83,14 +95,14 @@ for n in range(10000):
     x = x_next 
 ```
 
-これで良さそうなので，別の初期値 $x_0$ からはじめてみたい．
+これで良さそうなので，別の初期値 <!-- $x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0"> からはじめてみたい．
 
-たとえば初期値$x_0 = 3$では$x^2=3$の解の 1 つである「$x = \sqrt{3} = 1.732$」しか求められない．もう一つの解である $x = -1.732$を求めるには，これらの解に近い別の初期値からはじめないといけない．
-（もともと求めたいのは正の値$\sqrt{3}$だったので，止めてもいいのだけれど）
+たとえば初期値<!-- $x_0 = 3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0%20%3D%203">では<!-- $x^2=3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2%3D3">の解の 1 つである「<!-- $x = \sqrt{3} = 1.732$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%20%3D%20%5Csqrt%7B3%7D%20%3D%201.732">」しか求められない．もう一つの解である <!-- $x = -1.732$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%20%3D%20-1.732">を求めるには，これらの解に近い別の初期値からはじめないといけない．
+（もともと求めたいのは正の値<!-- $\sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B3%7D">だったので，止めてもいいのだけれど）
 
-たとえば， $-3$などから始めれば，負の解を求められそうである．
+たとえば， <!-- $-3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=-3">などから始めれば，負の解を求められそうである．
 
-それでは，$3$ と $-3$の 2 つの初期値それぞれで解を求めてみよう．
+それでは，<!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> と <!-- $-3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=-3">の 2 つの初期値それぞれで解を求めてみよう．
 
 そのためには，この 2 つの初期値をリストにして，`for` 文でリストから 1 つずつ初期値を取り出しては解を求めるというのを繰り返せばよい．
 
@@ -117,12 +129,14 @@ for x in x_list:
 
 ニュートン法の処理の漸化式を見ると許されない計算があることに気づく．
 
-$$x = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}$$
+<!-- $$x = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}$$ --> 
 
-ここで， $f^{\prime}(x_0) = 0$のとき，$0$ で割る演算であるから許されない． 今回の場合，$x_0=0$のとき$f^{\prime}(x_0)=0$なので，そんな初期値を使う人はいないと思うが，
-仮に$f^{\prime}(x_0) = 0$となると，プログラム自体がエラーで止まってしまい，別の計算が行われなくなる．
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+
+ここで， <!-- $f^{\prime}(x_0) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x_0)%20%3D%200">のとき，<!-- $0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=0"> で割る演算であるから許されない． 今回の場合，<!-- $x_0=0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0%3D0">のとき<!-- $f^{\prime}(x_0)=0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x_0)%3D0">なので，そんな初期値を使う人はいないと思うが，
+仮に<!-- $f^{\prime}(x_0) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x_0)%20%3D%200">となると，プログラム自体がエラーで止まってしまい，別の計算が行われなくなる．
 したがって，エラーでプログラム停止させるのではなく，現在の初期値から解を求めるのだけ諦め，別の初期値によって解を求めるように直前の`for`を抜けるようにしよう．
-「try-except」で例外処理を加えよう．
+「`try`-`except`」で例外処理を加えよう．
 
 ```py
 #%% newton4.py 
@@ -152,25 +166,25 @@ for x in x_list:
 
 ## 5の平方根を求めよ（課題1）
 
-完成した．今度は，$\sqrt{3}$ではなく，$\sqrt{5}$を解くコード`solve_sqrt5.py`を書いてみよう．
+完成した．今度は，<!-- $\sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B3%7D">ではなく，<!-- $\sqrt{5}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B5%7D">の実数値を求めるコード`solve_sqrt5.py`を書いてみよう．
 
 たいていの場合，上記のソースコードをコピペして`solve_sqrt5.py`の骨組みを作り，問題が変わった部分について若干の変更というか数字の書き換えをするだけではないだろうか？
 
 このような「コピペ＆数字の書き換え」はやめよう！その代わりに，
 
 1. コピペして作った新しいソースコードをモジュール`myfunc.py`にする．書き換える部分を引数変数にして関数`solve_sqrt()`に仕立てる．
-2. `solve_sqrt5.py`の冒頭で `import myfunc`と書いて，`myfunc.solve_sqrt(5)`により$\sqrt{5}$を解く．
+2. `solve_sqrt5.py`の冒頭で `import myfunc`と書いて，`myfunc.solve_sqrt(5)`により<!-- $\sqrt{5}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B5%7D">を求める．
 
 ## 恒等式をも引数にして，適当な恒等式の解を求めよ（課題2）
 
-これまで，平方根を求めるべく例えば$x^2-3=0$という恒等式を解いていたが，一般的な恒等式$f(x)=0$ を解けるようにしてみよう． ソースコードを見てみると，
+これまで，平方根を求めるべく例えば<!-- $x^2-3=0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2-3%3D0">という恒等式を解いていたが，一般的な恒等式<!-- $f(x)=0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%3D0"> を解けるようにしてみよう． ソースコードを見てみると，
 
 ```py
 epsilon = (x**2-3) / (2*x)
 ```
 
-のところだけが，今回の$f(x) = x^2 -3 = 0$に特有な部分である．分子は$f(x)$そのものであるから， たとえば `TargetFunc(x)`という関数を定義して，上の分子の部分にあてはめればよい．
-分母は導関数 $f^{\prime}(x)$であり， 導関数の数学的な定義にしたがって，`Differential(TargetFunc, x)` という関数を作る．
+のところだけが，今回の<!-- $f(x) = x^2 -3 = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%20x%5E2%20-3%20%3D%200">に特有な部分である．分子は<!-- $f(x)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)">そのものであるから， たとえば `TargetFunc(x)`という関数を定義して，上の分子の部分にあてはめればよい．
+分母は導関数 <!-- $f^{\prime}(x)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x)">であり， 導関数の数学的な定義にしたがって，`Differential(TargetFunc, x)` という関数を作る．
 
 ```py
 def Differential(TargetFunc, x): 
