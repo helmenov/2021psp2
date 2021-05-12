@@ -6,7 +6,7 @@
 
 ### 例：平方根を求める
 
-<!-- $\sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B3%7D">を求めてみよう．
+<!-- $\sqrt{3}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Csqrt%7B3%7D">の実数値を求めてみよう．
 
 すなわち<!-- $x^2 = 3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E2%20%3D%203">を満たす<!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x">を求めたい．
 
@@ -39,14 +39,13 @@ $$ -->
 先ほどの式を <!-- $f(x) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%200">，すなわち <!-- $f(x) = x^2-3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%20x%5E2-3">とする．真の解が <!-- $x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x"> として，それに近い <!-- $x_0 = x + \epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0%20%3D%20x%20%2B%20%5Cepsilon">の周りで <!-- $f(x)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)">をテイラー展開近似すると，
 
 <!-- $$f(x) = f(x_0 - \epsilon) = f(x_0) - f^{\prime}(x_0)\epsilon + O(\epsilon)$$ --> 
-
-<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%20f(x_0%20-%20%5Cepsilon)%20%3D%20f(x_0)%20-%20f%5E%7B%5Cprime%7D(x_0)%5Cepsilon%20%2B%20O(%5Cepsilon)"></div>
 
 となり，<!-- $\epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cepsilon">の2 次以降<!-- $O(\epsilon)$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=O(%5Cepsilon)">を無視すると， <!-- $f(x) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%200">となる <!-- $\epsilon$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cepsilon"> は
 
 <!-- $$\epsilon = \frac{f(x_0)}{f^{\prime}(x_0)}$$ --> 
 
-<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=%5Cepsilon%20%3D%20%5Cfrac%7Bf(x_0)%7D%7Bf%5E%7B%5Cprime%7D(x_0)%7D"></div>
 
 である．
 
@@ -54,19 +53,19 @@ $$ -->
 
 <!-- $$x_{n+1} = x_n - \frac{f(x_n)}{f^{\prime}(x_n)}$$ --> 
 
-<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7Bn%2B1%7D%20%3D%20x_n%20-%20%5Cfrac%7Bf(x_n)%7D%7Bf%5E%7B%5Cprime%7D(x_n)%7D"></div>
 
 という次の値を選んでいけば都合がよい．いま  <!-- $f(x) = x^2-3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f(x)%20%3D%20x%5E2-3">， その導関数 <!-- $f^{\prime}(x) = 2x$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x)%20%3D%202x">なので，
 
 <!-- $$x_{n+1} = x_n - \frac{x_n^2-3}{2x_n}$$ --> 
 
-<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7Bn%2B1%7D%20%3D%20x_n%20-%20%5Cfrac%7Bx_n%5E2-3%7D%7B2x_n%7D"></div>
 
 である．
 
 具体的に <!-- $x_0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0">として <!-- $3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3"> を代入してみよう．上の漸化式から，次に試す <!-- $x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1"> は <!-- $3 - \frac{3^2-3}{2 \cdot 3} = 3 - \frac{6}{6} = 3 - 1 = 2$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=3%20-%20%5Cfrac%7B3%5E2-3%7D%7B2%20%5Ccdot%203%7D%20%3D%203%20-%20%5Cfrac%7B6%7D%7B6%7D%20%3D%203%20-%201%20%3D%202"> ，その次に試す <!-- $x_2$は $2-\frac{2^2-3}{2\cdot 2}= 2-\frac{1}{4} = 1.75$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_2%24%E3%81%AF%20%242-%5Cfrac%7B2%5E2-3%7D%7B2%5Ccdot%202%7D%3D%202-%5Cfrac%7B1%7D%7B4%7D%20%3D%201.75">と求まる．
 
-<!-- $x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1">から<!-- $x_{10}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7B10%7D">までを逐次「`i :`<!-- $x_i$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_i"> の値」という形で表示する python プログラムコードは以下のようになる．
+<!-- $x_1$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_1">から<!-- $x_{10}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_%7B10%7D">までを逐次「`i :x_iの数値`」という形で表示する python プログラムコードは以下のようになる．
 
 ```py
 #%% newton1.py 
@@ -131,7 +130,7 @@ for x in x_list:
 
 <!-- $$x = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}$$ --> 
 
-<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math=x%20%3D%20x_0%20-%20%5Cfrac%7Bf(x_0)%7D%7Bf%5E%7B%5Cprime%7D(x_0)%7D"></div>
 
 ここで， <!-- $f^{\prime}(x_0) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x_0)%20%3D%200">のとき，<!-- $0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=0"> で割る演算であるから許されない． 今回の場合，<!-- $x_0=0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x_0%3D0">のとき<!-- $f^{\prime}(x_0)=0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x_0)%3D0">なので，そんな初期値を使う人はいないと思うが，
 仮に<!-- $f^{\prime}(x_0) = 0$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=f%5E%7B%5Cprime%7D(x_0)%20%3D%200">となると，プログラム自体がエラーで止まってしまい，別の計算が行われなくなる．
