@@ -105,7 +105,7 @@ for n in range(10000):
 
 そのためには，この 2 つの初期値をリストにして，`for` 文でリストから 1 つずつ初期値を取り出しては解を求めるというのを繰り返せばよい．
 
-ついでに，繰り返し回数の $10000$ ，収束判定条件の $0.001$ という値は，違う値で試したいので，変数とするほうがよい．
+ついでに，繰り返し回数の <!-- $10000$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=10000"> ，収束判定条件の <!-- $0.001$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=0.001"> という値は，違う値で試したいので，変数とするほうがよい．
 
 プログラムソースコードは以下の `newton3.py` である．
 
