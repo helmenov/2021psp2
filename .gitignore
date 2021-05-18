@@ -1,3 +1,4 @@
 secrets/
 .vscode/
 .theia/
+__pycache__/
