@@ -431,7 +431,7 @@ def pow(x,y):
 
 ## （実際に計算機で用いられるべき乗関数）
 
-上記では，$x^y$を「`x`を`y`回繰り返し乗算する」方法で解いています．これはべき乗の定義通りなのですが，計算機で実際に用いられる方法は，以下のような方法です．（繰り返し二乗法）
+上記では，<!-- $x^y$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5Ey">を「`x`を`y`回繰り返し乗算する」方法で解いています．これはべき乗の定義通りなのですが，計算機で実際に用いられる方法は，以下のような方法です．（繰り返し二乗法）
 
 ```py
 def pow(x,y):
@@ -451,7 +451,7 @@ def pow(x,y):
 - こういう，「`y`の2進数表記のある桁のビット値のみを残す」演算によくビット論理積が使われます．**ビットマスク**（あるビットをマスクする（隠す））といいます．
 - `y >>= 1`は `y = y >> 1`の省略した書き方で，`y >> 1`は「ビット右シフト」で`y`の2進数表記を右に`1`回スライドさせたもの（2進数）を10進数表記した数値です（はみ出したビットは無くなる）．たとえば`y=7`(2進数表記`0000 0111`)に対して `y >> 2`は「`2`回右シフト」なので，`0000 0011`つまり10進数の`3`となります．
 
-この処理でやっていることは，（カッコ内は`x=2`,`y=3`を与えたときの具体例）
+この処理でやっていることは，（カッコ内は`x=2`,`y=3`を与えたとき<!-- $2^3$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=2%5E3">の具体例）
 
 1. `ret`に`1`を代入（`ret = 1`, `x=2`，`y=3`）
 2. `y > 0`？，真なら続ける （今，真なので続ける）
@@ -465,7 +465,12 @@ def pow(x,y):
 10. `y > 0`？，真なら続ける （今，真ではないので，繰り返しを抜ける．）
 11. `ret`を呼び出し元に返却 (答えは`8`)
 
-乗算の個数は，`y=3`の場合は上記の`3`,`4`,`7`,`8`の4回です．`y=4`の場合も4回，`y=8`の場合5回です．（指数を2進数表記したときの`1`のビット数＋1）
+乗算の個数は，`y=3`の場合は上記の`3`,`4`,`7`,`8`の4回です．`y=4`の場合も4回，`y=8`の場合5回です．（指数を2進数表記したときの`1`のビット数＋`1`となっている最高桁数）
 
 もともとの「指数回乗算する」方法だと，`y=3`の場合4回，`y=4`の場合5回，`y=8`の場合9回となり，指数が大きくなるほど，上記の繰り返し二乗法との差が大きくなります．（重い）
 
+繰り返し二乗法は，
+<!-- $y = 2^{y_4} + 2^{y_3} + 2^{y_2} + 2^{y_1}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=y%20%3D%202%5E%7By_4%7D%20%2B%202%5E%7By_3%7D%20%2B%202%5E%7By_2%7D%20%2B%202%5E%7By_1%7D"> 
+（ <!-- $y_n$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=y_n"> は`y`を2進数表記したときのn桁目にあたる）としたとき， 
+<!-- $x^y = x^{2^{y_4}} \cdot x^{2^{y_3}} \cdot x^{2^{y_2}} \cdot x^{2^{y_1}}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5Ey%20%3D%20x%5E%7B2%5E%7By_4%7D%7D%20%5Ccdot%20x%5E%7B2%5E%7By_3%7D%7D%20%5Ccdot%20x%5E%7B2%5E%7By_2%7D%7D%20%5Ccdot%20x%5E%7B2%5E%7By_1%7D%7D"> を計算しています．
+<!-- $2^{y_n}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=2%5E%7By_n%7D"> は1または2なので，<!-- $x^{y_n}$ --> <img style="transform: translateY(0.1em); background: white;" src="https://render.githubusercontent.com/render/math?math=x%5E%7By_n%7D">は`x`または`x*x`です．よって乗算回数が 「指数を2進数表記したときの`1`のビット数＋`1`となっている最高桁数」となります．
