@@ -7,7 +7,7 @@
 
 次のような表です．
 
-|index|ID|好きな動物|動物占いの判定|誕生月|セロリ嗜好|歩数|BMI|
+|index|ID|favoriteAnimal|fortuneAnimal|birthMonth|CerelyFavor|歩数|BMI|
 |---|---|---|---|---|----|---|---|
 | | | | | | | | |
 
@@ -20,8 +20,8 @@
 
 ```csv
 # mydata1.csv
-ID, 好きな動物, 動物占いの判定, 誕生月, セロリ嗜好, 所持金の増加（差）,所持金の増加（比）
-aa83988848, ひつじ, たぬき, 5, 嫌い, 3192, 1.01
+ID, favoriteAnimal, fortuneAnimal, birthMonth, CerelyFavor, moneyIncreaseDiff,moneyIncreaseRatio
+aa83988848, Sheep, Tanuki, 5, Hate, 3192, 1.01
 ```
 
 のようなファイルになります．行ごとに列の文字数が異なるので，多少読みにくいですが，そもそもヒトが読むものではなく，計算機が読むためのものなので我慢です．
@@ -139,8 +139,8 @@ import pandas as pd
 <class 'pandas.core.frame.DataFrame'>
 >>> print(df1)
            # mydata1.csv
-ID                       動物占いに出てくる好きな動物  動物占いの結果の動物  誕生月  セロリ嗜好  所持金の増加（差）   所持金の増加（比）
-aa83988848  ひつじ                                                    たぬき                                 5              嫌い               3192                                 1.01
+ID                       favoriteAnimal  fortuneAnimal  birthMonth  CerelyFavor  moneyIncreaseDiff   moneyIncreaseRatio
+aa83988848  Sheep                                                    Tanuki                                 5              Hate               3192                                 1.01
 >>> print(df1.shape)
 (2, 1)
 ```
@@ -165,11 +165,11 @@ aa83988848  ひつじ                                                    たぬ�
 >>> print(df2.shape)
 (1, 7)
 >>> print(df2)
-           ID  好きな動物  動物占いの判定   誕生月   セロリ嗜好    所持金の増加（差）   所持金の増加（比）
-0  aa83988848              ひつじ         たぬき     5                  嫌い  3192    1.01
+           ID  favoriteAnimal  fortuneAnimal   birthMonth   CerelyFavor    moneyIncreaseDiff   moneyIncreaseRatio
+0  aa83988848              Sheep         Tanuki     5                  Hate  3192    1.01
 >>> print(df2.columns)
-Index(['ID', ' 好きな動物', ' 動物占いの判定', ' 誕生月', ' セロリ嗜好',
-       ' 所持金の増加（差）', ' 所持金の増加（比）'],
+Index(['ID', ' favoriteAnimal', ' fortuneAnimal', ' birthMonth', ' CerelyFavor',
+       ' moneyIncreaseDiff', ' moneyIncreaseRatio'],
       dtype='object')
 >>> print(type(df2.columns))
 <class 'pandas.core.indexes.base.Index'>
@@ -186,10 +186,10 @@ CSVによってはヘッダが書かれていない場合があります．`myda
 (0,  7)
 >>> print(df3)
 Empty DataFrame
-Columns: [aa83988848,  ひつじ,  たぬき,  5,  嫌い,  3192,  1.01]
+Columns: [aa83988848,  Sheep,  Tanuki,  5,  Hate,  3192,  1.01]
 Index: []
 >>> print(df3.columns)
-Index(['aa83988848', ' ひつじ', ' たぬき', ' 5', ' 嫌い', ' 3192', ' 1.01'], dtype='object')
+Index(['aa83988848', ' Sheep', ' Tanuki', ' 5', ' Hate', ' 3192', ' 1.01'], dtype='object')
 ```
 
 データ本体の最初のサンプルが間違ってヘッダにされてしまいますので，この場合はヘッダが無いことを明記します．
@@ -200,7 +200,7 @@ Index(['aa83988848', ' ひつじ', ' たぬき', ' 5', ' 嫌い', ' 3192', ' 1.0
 (1,  7)
 >>> print(df4)
             0    1     2  3  4     5   6
-0  aa83988848   ひつじ   たぬき  5 嫌い  3192  1.01
+0  aa83988848   Sheep   Tanuki  5 Hate  3192  1.01
 >>> print(df4.columns)
 Int64Index([0, 1, 2, 3, 4, 5, 6], dtype='int64')
 ```
@@ -210,8 +210,8 @@ Int64Index([0, 1, 2, 3, 4, 5, 6], dtype='int64')
 もし，カラムラベルを指定したいなら読み込んだ後に，
 
 ```sh
->>> df4.columns = ['ID', ' 好きな動物', ' 動物占いの判定', ' 誕生月', ' セロリ嗜好',
-       ' 所持金の増加（差）', ' 所持金の増加（比）'],
+>>> df4.columns = ['ID', ' favoriteAnimal', ' fortuneAnimal', ' birthMonth', ' CerelyFavor',
+       ' moneyIncreaseDiff', ' moneyIncreaseRatio'],
 ```
 と属性columnsを上書きします．
 
@@ -225,9 +225,9 @@ Int64Index([0, 1, 2, 3, 4, 5, 6], dtype='int64')
 ```sh
 >>> df5 = pd.read_csv('mydata1.csv', skiprows=[0], header=0, index_col=0)
 >>> print(df5)
-            好きな動物  動物占いの判定   誕生月   セロリ嗜好    所持金の増加（差）   所持金の増加（比）
+            favoriteAnimal  fortuneAnimal   birthMonth   CerelyFavor    moneyIncreaseDiff   moneyIncreaseRatio
 ID                                                                          
-aa83988848              ひつじ         たぬき     5                  嫌い  3192    1.01
+aa83988848              Sheep         Tanuki     5                  Hate  3192    1.01
 >>> print(df5.shape)
 (1,  6)
 >>> print(df5.index)
@@ -255,17 +255,17 @@ ID
 >>>
 >>> df = pd.read_csv('mydata2.csv')
 >>> print(df)
-           ID 好きな動物 動物占いの判定  誕生月 セロリ嗜好  所持金の増加（差）  所持金の増加（比）
-0   friend001           ライオン          虎    1    好き       1000      1.500
-1   friend003            チータ        チータ    3   超嫌い      -1000      0.700
-2   friend004           ペガサス          猿    4   ふつう     -10000      0.900
-3   friend005           黒ひょう        ひつじ    2    嫌い        150      1.001
-4  friend0200             ゾウ        たぬき    7    好き       -300      0.800
-5       umi03            子守熊          虎    4   超好き       -150      0.990
-6   dorawemon            たぬき       ライオン    9    好き       1000      1.020
-7      nobita              虎        チータ    8    嫌い     -10000      0.500
-8     shizuka            たぬき       ライオン    9   超嫌い       2000      1.500
-9       suneo           ライオン        チータ    1    嫌い       -300      0.999
+           ID favoriteAnimal fortuneAnimal  birthMonth CerelyFavor  moneyIncreaseDiff  moneyIncreaseRatio
+0   friend001           Lion          Tigar    1    Like       1000      1.500
+1   friend003            Cheetah        Cheetah    3   extremelyHate      -1000      0.700
+2   friend004           Pegasus          Monkey    4   Regular     -10000      0.900
+3   friend005           BlackPanthera        Sheep    2    Hate        150      1.001
+4  friend0200             Elephant        Tanuki    7    Like       -300      0.800
+5       umi03            Bear          Tigar    4   extremelyLike       -150      0.990
+6   dorawemon            Tanuki       Lion    9    Like       1000      1.020
+7      nobita              Tigar        Cheetah    8    Hate     -10000      0.500
+8     shizuka            Tanuki       Lion    9   extremelyHate       2000      1.500
+9       suneo           Lion        Cheetah    1    Hate       -300      0.999
 ```
 
 IDには被験者やサンプルを区別するラベルが書かれています．学籍番号だったりします．表の表示には必要ですが，データの解析には必要ありません．
@@ -275,63 +275,63 @@ IDには被験者やサンプルを区別するラベルが書かれています
 ``` sh
 >>> df = pd.read_csv('mydata2.csv', index_col=0)
 >>> print(df)
-           好きな動物 動物占いの判定  誕生月 セロリ嗜好  所持金の増加（差）  所持金の増加（比）
+           favoriteAnimal fortuneAnimal  birthMonth CerelyFavor  moneyIncreaseDiff  moneyIncreaseRatio
 ID                                                                   
-friend001            ライオン          虎    1    好き       1000      1.500
-friend003             チータ        チータ    3   超嫌い      -1000      0.700
-friend004            ペガサス          猿    4   ふつう     -10000      0.900
-friend005            黒ひょう        ひつじ    2    嫌い        150      1.001
-friend0200             ゾウ        たぬき    7    好き       -300      0.800
-umi03                 子守熊          虎    4   超好き       -150      0.990
-dorawemon             たぬき       ライオン    9    好き       1000      1.020
-nobita                  虎        チータ    8    嫌い     -10000      0.500
-shizuka               たぬき       ライオン    9   超嫌い       2000      1.500
-suneo                ライオン        チータ    1    嫌い       -300      0.999
+friend001            Lion          Tigar    1    Like       1000      1.500
+friend003             Cheetah        Cheetah    3   extremelyHate      -1000      0.700
+friend004            Pegasus          Monkey    4   Regular     -10000      0.900
+friend005            BlackPanthera        Sheep    2    Hate        150      1.001
+friend0200             Elephant        Tanuki    7    Like       -300      0.800
+umi03                 Bear          Tigar    4   extremelyLike       -150      0.990
+dorawemon             Tanuki       Lion    9    Like       1000      1.020
+nobita                  Tigar        Cheetah    8    Hate     -10000      0.500
+shizuka               Tanuki       Lion    9   extremelyHate       2000      1.500
+suneo                Lion        Cheetah    1    Hate       -300      0.999
 ```
 
 ## データフレーム上の値のクラス
 
 データフレーム上の値は以下のように参照できます．
 
--「好きな動物」だけを全サンプル参照してみます．
+-「favoriteAnimal」だけを全サンプル参照してみます．
 
 ```sh
->>> print(df['好きな動物'])
+>>> print(df['favoriteAnimal'])
 ID
-friend001     ライオン
-friend003      チータ
-friend004     ペガサス
-friend005     黒ひょう
-friend0200      ゾウ
-umi03          子守熊
-dorawemon      たぬき
-nobita           虎
-shizuka        たぬき
-suneo         ライオン
-Name: 好きな動物, dtype: object
+friend001     Lion
+friend003      Cheetah
+friend004     Pegasus
+friend005     BlackPanthera
+friend0200      Elephant
+umi03          Bear
+dorawemon      Tanuki
+nobita           Tigar
+shizuka        Tanuki
+suneo         Lion
+Name: favoriteAnimal, dtype: object
 
->>> print(type(df['好きな動物']))
+>>> print(type(df['favoriteAnimal']))
 <class 'pandas.core.series.Series'>
 ```
 
-- 行番号2（行番号は0からはじまる）のサンプルの「好きな動物」は
+- 行番号2（行番号は0からはじまる）のサンプルの「favoriteAnimal」は
 
 ```sh
->>> print(df['好きな動物'][2])
-ペガサス
->>> print(type(df['好きな動物'][2]))
+>>> print(df['favoriteAnimal'][2])
+Pegasus
+>>> print(type(df['favoriteAnimal'][2]))
 <class 'str'>
 ```
 
-- 行番号2から4までの3行のサンプルの「好きな動物」は
+- 行番号2から4までの3行のサンプルの「favoriteAnimal」は
 
 ```sh
->>> print(df['好きな動物'][2:5])
+>>> print(df['favoriteAnimal'][2:5])
 ID
-friend004     ペガサス
-friend005     黒ひょう
-friend0200      ゾウ
-Name: 好きな動物, dtype: object
+friend004     Pegasus
+friend005     BlackPanthera
+friend0200      Elephant
+Name: favoriteAnimal, dtype: object
 ```
 
 データ集め終えたときに次にやることは，各項目の統計でしょうか．たとえば平均値や標準偏差でしょうか．
@@ -340,10 +340,10 @@ Name: 好きな動物, dtype: object
 
 ```sh
 >>> print(df.describe(include='all))
-       好きな動物 動物占いの判定     誕生月 セロリ嗜好  所持金の増加（差）  所持金の増加（比）
+       favoriteAnimal fortuneAnimal     birthMonth CerelyFavor  moneyIncreaseDiff  moneyIncreaseRatio
 count          10             10  10.000000         10           10.000000           10.000000
 unique          8              6        NaN          5                 NaN                 NaN
-top      ライオン         チータ        NaN       好き                 NaN                 NaN
+top      Lion         Cheetah        NaN       Like                 NaN                 NaN
 freq            2              3        NaN          3                 NaN                 NaN
 mean          NaN            NaN   4.800000        NaN        -1760.000000            0.991000
 std           NaN            NaN   3.190263        NaN         4425.293462            0.314412
@@ -368,47 +368,47 @@ max           NaN            NaN   9.000000        NaN         2000.000000      
 
 ```sh
 >>> print(df.mean())
-誕生月                   4.800
-所持金の増加（差）   -1760.000
-所持金の増加（比）       0.991
+birthMonth                   4.800
+moneyIncreaseDiff   -1760.000
+moneyIncreaseRatio       0.991
 dtype: float64
 >>> print(df.median())
-誕生月                  4.0000
-所持金の増加（差）   -225.0000
-所持金の増加（比）      0.9945
+birthMonth                  4.0000
+moneyIncreaseDiff   -225.0000
+moneyIncreaseRatio      0.9945
 dtype: float64
 >>> print(df.sdv())
-誕生月                   3.190263
-所持金の増加（差）    4425.293462
-所持金の増加（比）       0.314412
+birthMonth                   3.190263
+moneyIncreaseDiff    4425.293462
+moneyIncreaseRatio       0.314412
 dtype: float64
 >>> print(df.quantile(0.25))
-所持金の増加（差）   -825.000
-所持金の増加（比）      0.825
+moneyIncreaseDiff   -825.000
+moneyIncreaseRatio      0.825
 Name: 0.25, dtype: float64
 >>> print(df.quantile([0.25,0.75]))
-      所持金の増加（差）  所持金の増加（比）
+      moneyIncreaseDiff  moneyIncreaseRatio
 0.25              -825.0             0.82500
 0.75               787.5             1.01525
 ```
 です．
 
-ところで，「誕生月」，「所持金の増加（差）」，「所持金の増加（比）」ですが，その平均や標準偏差ってどんな意味があるのでしょうか？
+ところで，「birthMonth」，「moneyIncreaseDiff」，「moneyIncreaseRatio」ですが，その平均や標準偏差ってどんな意味があるのでしょうか？
 
--「所持金の増加（差）」の平均は理解可能です．昨日の所持金に比べ，全員が平均何円増加したかを表しています．標準偏差もその増加額が人によってどのくらい幅があるかです．
-- 「所持金の増加（比）」はどうでしょうか？平均は1周辺にあるのですが，全員が平均何倍増加したかを表していますね．標準偏差はその増加比が人によってどのくらい幅があるかですね．
+-「moneyIncreaseDiff」の平均は理解可能です．昨日の所持金に比べ，全員が平均何円増加したかを表しています．標準偏差もその増加額が人によってどのくらい幅があるかです．
+- 「moneyIncreaseRatio」はどうでしょうか？平均は1周辺にあるのですが，全員が平均何倍増加したかを表していますね．標準偏差はその増加比が人によってどのくらい幅があるかですね．
 
 
-「誕生月」はどうでしょうか？おそらくmeanやmedianの結果は，6月周辺の月になっているでしょう．だから何なのでしょう．この値は一番多い誕生月ではありません．
-一番多い誕生月は最頻値(モード,mode)です．上記には表示されていません．誕生月の最頻値なら意味があります．
+「birthMonth」はどうでしょうか？おそらくmeanやmedianの結果は，6月周辺の月になっているでしょう．だから何なのでしょう．この値は一番多いbirthMonthではありません．
+一番多いbirthMonthは最頻値(モード,mode)です．上記には表示されていません．birthMonthの最頻値なら意味があります．
 
-「誕生月」は，1〜12で答えられていますが，この数値は，データ的には大小がない値で有るべきなのです．よってクラスを「カテゴリー」に変更します．astype*メソッド*を使い文字列クラスに変更した後に，Categorical*関数*でカテゴリークラスに変更します．
+「birthMonth」は，1〜12で答えられていますが，この数値は，データ的には大小がない値で有るべきなのです．よってクラスを「カテゴリー」に変更します．astype*メソッド*を使い文字列クラスに変更した後に，Categorical*関数*でカテゴリークラスに変更します．
 
 ```sh
->>> df['誕生月'] = df['誕生月'].astype('str') 
+>>> df['birthMonth'] = df['birthMonth'].astype('str') 
 >>> listBirthMonth = list([str(x) for x in range(1,13)])
->>> df['誕生月'] = pd.Categorical(df['誕生月'], categories=listBirthMonth)
->>> print(df['誕生月'])
+>>> df['birthMonth'] = pd.Categorical(df['birthMonth'], categories=listBirthMonth)
+>>> print(df['birthMonth'])
 ID
 friend001     1
 friend003     3
@@ -420,37 +420,37 @@ dorawemon     9
 nobita        8
 shizuka       9
 suneo         1
-Name: 誕生月, dtype: category
+Name: birthMonth, dtype: category
 Categories (12, object): ['1', '2', '3', '4', ..., '9', '10', '11', '12']
 ```
 
-さて，「セロリ嗜好」は，誕生月とは逆に，値は文字列ですが，これって5段階評価で，大小があります．なので，文字列を大小のある値に変換します．大小があるカテゴリーは，`ordered=True`を指定します．
+さて，「CerelyFavor」は，birthMonthとは逆に，値は文字列ですが，これって5段階評価で，大小があります．なので，文字列を大小のある値に変換します．大小があるカテゴリーは，`ordered=True`を指定します．
 
 ```sh
->>> listCelery = list(['超嫌い','嫌い','ふつう','好き','超好き'])
->>> df['セロリ嗜好']=pd.Categorical(df['セロリ嗜好'],categories=listCelery, ordered=True)
->>> print(df['セロリ嗜好'])
+>>> listCelery = list(['extremelyHate','Hate','Regular','Like','extremelyLike'])
+>>> df['CerelyFavor']=pd.Categorical(df['CerelyFavor'],categories=listCelery, ordered=True)
+>>> print(df['CerelyFavor'])
 ID
-friend001       好き
-friend003     超嫌い
-friend004     ふつう
-friend005       嫌い
-friend0200      好き
-umi03         超好き
-dorawemon       好き
-nobita          嫌い
-shizuka       超嫌い
-suneo           嫌い
-Name: セロリ嗜好, dtype: category
-Categories (5, object): ['超嫌い' < '嫌い' < 'ふつう' < '好き' < '超好き']
+friend001       Like
+friend003     extremelyHate
+friend004     Regular
+friend005       Hate
+friend0200      Like
+umi03         extremelyLike
+dorawemon       Like
+nobita          Hate
+shizuka       extremelyHate
+suneo           Hate
+Name: CerelyFavor, dtype: category
+Categories (5, object): ['extremelyHate' < 'Hate' < 'Regular' < 'Like' < 'extremelyLike']
 ```
 
 また，大小ありのカテゴリは，数値を持っていて，cat.codesメソッドでその数値を読むことができます．
-この数値を新しい項目「セロリ嗜好度値」に保存することにします．
+この数値を新しい項目「CerelyFavor度値」に保存することにします．
 
 ```sh
->>> df['セロリ嗜好度値']=df['セロリ嗜好'].cat.codes
->>> print(df['セロリ嗜好度値'])
+>>> df['CerelyFavor度値']=df['CerelyFavor'].cat.codes
+>>> print(df['CerelyFavor度値'])
 ID
 friend001     3
 friend003     0
@@ -462,63 +462,63 @@ dorawemon     3
 nobita        1
 shizuka       0
 suneo         1
-Name: セロリ嗜好度値, dtype: int8
+Name: CerelyFavor度値, dtype: int8
 ```
 
-- 「好きな動物」と「動物占いの判定」
+- 「favoriteAnimal」と「fortuneAnimal」
 
 「動物占い」を知ってますか．2000年くらいに流行した「人は12種類の動物に代表される性格があるけど，あなたは？」っていうものです．
-ライオン、チータ、ペガサス、ゾウ、猿、狼、子守熊、虎、黒ひょう、ひつじ、たぬき、こじか の12種類です．
+Lion、Cheetah、Pegasus、Elephant、Monkey、狼、Bear、Tigar、BlackPanthera、Sheep、Tanuki、こじか の12種類です．
 単純に誕生日で決まっているようです．
 
 [動物占い公式ページ](https://www.doubutsu-uranai.com)
 
-今回のデータの「好きな動物」と「動物占いの判定」はこの12種類から選ばれるとします．
+今回のデータの「favoriteAnimal」と「fortuneAnimal」はこの12種類から選ばれるとします．
 
 どんな動物かは順序がありません．よって数値の割り振りは適当で構いません．よって，これらもカテゴリ（大小なし）です．
 
 ```sh
->>> listAnimal = list(['ライオン','チータ','ペガサス','ゾウ','猿','狼','子守熊','虎','黒ひょう','ひつじ','たぬき','こじか'])
->>> df['好きな動物'] = pd.Categorical(df['好きな動物'], categories=listAnimal, ordered=False)
->>> df['動物占いの判定'] = pd.Categorical(df['動物占いの判定'], categories=listAnimal, ordered=False)
->>> print(df['好きな動物'])
+>>> listAnimal = list(['Lion','Cheetah','Pegasus','Elephant','Monkey','狼','Bear','Tigar','BlackPanthera','Sheep','Tanuki','こじか'])
+>>> df['favoriteAnimal'] = pd.Categorical(df['favoriteAnimal'], categories=listAnimal, ordered=False)
+>>> df['fortuneAnimal'] = pd.Categorical(df['fortuneAnimal'], categories=listAnimal, ordered=False)
+>>> print(df['favoriteAnimal'])
 ID
-friend001     ライオン
-friend003       チータ
-friend004     ペガサス
-friend005     黒ひょう
-friend0200        ゾウ
-umi03           子守熊
-dorawemon       たぬき
-nobita              虎
-shizuka         たぬき
-suneo         ライオン
-Name: 好きな動物, dtype: category
-Categories (12, object): ['ライオン', 'チータ', 'ペガサス', 'ゾウ', ..., '黒ひょう', 'ひつじ', 'たぬき', 'こじか']
->>> print(df['動物占いの判定'])
+friend001     Lion
+friend003       Cheetah
+friend004     Pegasus
+friend005     BlackPanthera
+friend0200        Elephant
+umi03           Bear
+dorawemon       Tanuki
+nobita              Tigar
+shizuka         Tanuki
+suneo         Lion
+Name: favoriteAnimal, dtype: category
+Categories (12, object): ['Lion', 'Cheetah', 'Pegasus', 'Elephant', ..., 'BlackPanthera', 'Sheep', 'Tanuki', 'こじか']
+>>> print(df['fortuneAnimal'])
 ID
-friend001           虎
-friend003       チータ
-friend004           猿
-friend005       ひつじ
-friend0200      たぬき
-umi03               虎
-dorawemon     ライオン
-nobita          チータ
-shizuka       ライオン
-suneo           チータ
-Name: 動物占いの判定, dtype: category
-Categories (12, object): ['ライオン', 'チータ', 'ペガサス', 'ゾウ', ..., '黒ひょう', 'ひつじ', 'たぬき', 'こじか']
+friend001           Tigar
+friend003       Cheetah
+friend004           Monkey
+friend005       Sheep
+friend0200      Tanuki
+umi03               Tigar
+dorawemon     Lion
+nobita          Cheetah
+shizuka       Lion
+suneo           Cheetah
+Name: fortuneAnimal, dtype: category
+Categories (12, object): ['Lion', 'Cheetah', 'Pegasus', 'Elephant', ..., 'BlackPanthera', 'Sheep', 'Tanuki', 'こじか']
 ```
 
 すべての項目を適切な尺度水準にしたので，
 
 ```sh
 >>> print(df.describe(include='all'))
-       好きな動物 動物占いの判定 誕生月 セロリ嗜好  所持金の増加（差）  所持金の増加（比）  セロリ嗜好度値
+       favoriteAnimal fortuneAnimal birthMonth CerelyFavor  moneyIncreaseDiff  moneyIncreaseRatio  CerelyFavor度値
 count          10             10     10         10           10.000000           10.000000       10.000000
 unique          8              6      7          5                 NaN                 NaN             NaN
-top      ライオン         チータ      1       嫌い                 NaN                 NaN             NaN
+top      Lion         Cheetah      1       Hate                 NaN                 NaN             NaN
 freq            2              3      2          3                 NaN                 NaN             NaN
 mean          NaN            NaN    NaN        NaN        -1760.000000            0.991000        1.800000
 std           NaN            NaN    NaN        NaN         4425.293462            0.314412        1.398412
@@ -532,12 +532,12 @@ max           NaN            NaN    NaN        NaN         2000.000000          
 
 # 課題
 
-1.「好きな動物」が「ライオン」の人と「たぬき」の人でセロリ嗜好度は差があると言えるか調べよ．調べるためのコード実行例を示せ．
+1.「favoriteAnimal」が「Lion」の人と「Tanuki」の人でCerelyFavor度は差があると言えるか調べよ．調べるためのコード実行例を示せ．
 一般的に双方の四分位範囲が重ならない場合「差がある」と言う．重なっている場合は「差があると言えない」と言う．
 
 ```sh
->>> print(df[df['好きな動物']=='ライオン'].describe())
-       所持金の増加（差）  所持金の増加（比）  セロリ嗜好度値
+>>> print(df[df['favoriteAnimal']=='Lion'].describe())
+       moneyIncreaseDiff  moneyIncreaseRatio  CerelyFavor度値
 count            2.000000             2.00000        2.000000
 mean           350.000000             1.24950        2.000000
 std            919.238816             0.35426        1.414214
@@ -549,7 +549,7 @@ max           1000.000000             1.50000        3.000000
 ```
 ※四分位範囲(IQR, Inter Quantile Range)とは，25%-75%の広さである．
 
-2. 「好きな動物」が「ライオン」の人と「たぬき」の人では，どちらが平均的に今日の所持金が多いか？（どちらが増加が大きいかではない）
+2. 「favoriteAnimal」が「Lion」の人と「Tanuki」の人では，どちらが平均的に今日の所持金が多いか？（どちらが増加が大きいかではない）
 
 
 
