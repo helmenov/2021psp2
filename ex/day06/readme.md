@@ -253,7 +253,7 @@ ID
 >>> import pandas as pd
 >>> pd.set_option('display.unicode.east_asian_width', True)
 >>>
->>> df = pd.read_csv('mydata2.csv',skipinitialspaces=True)
+>>> df = pd.read_csv('mydata2.csv',skipinitialspace=True)
 >>> print(df)
            ID favoriteAnimal fortuneAnimal  birthMonth CerelyFavor  moneyIncreaseDiff  moneyIncreaseRatio
 0   friend001           Lion          Tigar    1    Like       1000      1.500
