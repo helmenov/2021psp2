@@ -134,7 +134,7 @@ import pandas as pd
 >>> import pandas as pd
 >>> pd.set_option('display.unicode.east_asian_width', True)
 >>>
->>> df1= pd.read_csv('mydata1.csv',skipinitialspaces=True)
+>>> df1= pd.read_csv('mydata1.csv',skipinitialspace=True)
 >>> print(type(df1))
 <class 'pandas.core.frame.DataFrame'>
 >>> print(df1)
@@ -161,7 +161,7 @@ aa83988848  Sheep                                                    Tanuki     
 読み飛ばす行番号を`skiprows`にリストします．
 
 ```sh
->>> df2 = pd.read_csv('mydata1.csv', skiprows=[0], skipinitialspaces=True)
+>>> df2 = pd.read_csv('mydata1.csv', skiprows=[0], skipinitialspace=True)
 >>> print(df2.shape)
 (1, 7)
 >>> print(df2)
@@ -181,7 +181,7 @@ CSVファイルを読むと，（読みとばしを無視した）最初の行�
 CSVによってはヘッダが書かれていない場合があります．`mydata1.csv`で読み飛ばす行の番号を`[0,1]`としてみると
 
 ```sh
->>> df3 = pd.read_csv('mydata1.csv', skiprows=[0,1], skipinitialspaces=True)
+>>> df3 = pd.read_csv('mydata1.csv', skiprows=[0,1], skipinitialspace=True)
 >>> print(df3.shape)
 (0,  7)
 >>> print(df3)
@@ -195,7 +195,7 @@ Index(['aa83988848', ' Sheep', ' Tanuki', ' 5', ' Hate', ' 3192', ' 1.01'], dtyp
 データ本体の最初のサンプルが間違ってヘッダにされてしまいますので，この場合はヘッダが無いことを明記します．
 
 ```sh
->>> df4 = pd.read_csv('mydata1.csv', skiprows=[0,1], header=None, skipinitialspaces=True)
+>>> df4 = pd.read_csv('mydata1.csv', skiprows=[0,1], header=None, skipinitialspace=True)
 >>> print(df4.shape)
 (1,  7)
 >>> print(df4)
@@ -223,7 +223,7 @@ Int64Index([0, 1, 2, 3, 4, 5, 6], dtype='int64')
 
 
 ```sh
->>> df5 = pd.read_csv('mydata1.csv', skiprows=[0], header=0, index_col=0, skipinitialspaces=True)
+>>> df5 = pd.read_csv('mydata1.csv', skiprows=[0], header=0, index_col=0, skipinitialspace=True)
 >>> print(df5)
             favoriteAnimal  fortuneAnimal   birthMonth   CerelyFavor    moneyIncreaseDiff   moneyIncreaseRatio
 ID                                                                          
@@ -239,7 +239,7 @@ ID
 ヘッダ行番号を指定すると，それより上の行は読み飛ばされますので，今の場合，
 
 ```sh
->>> df6 = pd.read_csv('mydata1.csv', header=1, index_col=0, skipinitialspaces=True)
+>>> df6 = pd.read_csv('mydata1.csv', header=1, index_col=0, skipinitialspace=True)
 ```
 
 でも同じです．
@@ -273,7 +273,7 @@ IDには被験者やサンプルを区別するラベルが書かれています
 なので，
 
 ``` sh
->>> df = pd.read_csv('mydata2.csv', index_col=0, skipinitialspaces=True)
+>>> df = pd.read_csv('mydata2.csv', index_col=0, skipinitialspace=True)
 >>> print(df)
            favoriteAnimal fortuneAnimal  birthMonth CerelyFavor  moneyIncreaseDiff  moneyIncreaseRatio
 ID                                                                   
