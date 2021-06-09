@@ -11,13 +11,43 @@ import numpy as np
 x = np.array([x for x in range(12)])/10
 
 
-# pyplotのsubplots関数でfigure(キャンバス)とaxes(グラフ群)とで構成されるタプルを発行します．
-# subplotsの引数は，figure上に並べるaxesの(行数,列数)です．
+# pyplotのfigure関数でfigure(キャンバス)を作ります．
+# 表示はされませんが，キャンバスの大きさが 432 x 288 という大きさです．
 
 # In[2]:
 
 
-(fig, (axe_alice, axe_bob)) = plt.subplots(1,2)  # Create a figure and an axes.
+fig = plt.figure()
+
+
+# 引数でキャンバスの使い方を指定できます．
+# - キャンバスサイズを640 x 480 にしたいなら，`figsize=(6.4, 4.8), dpi=100`
+# - キャンバス上に置くax(グラフの地）のレイアウト `tight_layout = True`にするといい
+# 
+# 他にも有ります．
+# - キャンバスの背景色 `facecolor`
+# - キャンバスの外枠線の太さ `linewidth`
+# - キャンバスの外枠線の色 `edgecolor`
+# 
+
+# In[3]:
+
+
+fig = plt.figure(figsize=(6.4, 4.8), dpi=100, tight_layout=True)
+
+
+# figureクラスのadd_subplotsメソッドでax(グラフの地)を作ります．
+# add_subplotsの引数は，figure上に並べるaxesの(行数,列数)です．
+# ![pyplot.subplots](fig1.svg)
+# ![pyplot.axes](axes.drawio.svg)
+
+# In[4]:
+
+
+# Create a figure and an axes.
+axe_alice = fig.add_subplot(1,2,1)
+axe_bob = fig.add_subplot(1,2,2)
+display(fig)
 
 
 # axesクラスの各種メソッドでグラフを描きます．
@@ -27,7 +57,7 @@ x = np.array([x for x in range(12)])/10
 # 
 # display関数は絵を表示します．print関数が文字列を表示するように．
 
-# In[3]:
+# In[5]:
 
 
 axe_alice.plot(x, x, label='linear')  # Plot some data on the axes.
@@ -41,7 +71,7 @@ display(fig)
 # - axesクラスの各種`set_**`メソッドでグラフ周りの軸ラベル，グラフタイトルなどを設定できます．
 # - axesクラスの`legend`メソッドはグラフのlabelを凡例として追記します．
 
-# In[4]:
+# In[6]:
 
 
 axe_alice.set_ylabel('this is y label on alice')  # Add an x-label to the axes.
@@ -56,7 +86,7 @@ display(fig)
 
 # - axesクラスの各種`get_**`メソッドはグラフ周りの軸ラベル，グラフタイトルなどを抽出します
 
-# In[5]:
+# In[7]:
 
 
 print(axe_alice.get_ylabel())
@@ -64,7 +94,7 @@ print(axe_bob.get_xlabel())
 print(axe_bob.get_title())
 
 
-# In[6]:
+# In[8]:
 
 
 # ticksは目盛を打つ数値のリスト
@@ -73,7 +103,7 @@ print(axe_alice.get_xticks())
 print(axe_alice.get_xticklabels())
 
 
-# In[7]:
+# In[9]:
 
 
 # limはグラフ表示範囲の下限と上限
@@ -83,14 +113,14 @@ axe_alice.set_ylim(axe_bob.get_ylim())
 display(fig)
 
 
-# In[8]:
+# In[10]:
 
 
 # scale は軸のスケール（Linear 線形, log 対数）
 print(axe_alice.get_xscale())
 
 
-# In[9]:
+# In[11]:
 
 
 axe_alice.set_xscale('log')
@@ -101,7 +131,7 @@ display(fig)
 
 # axeの`annotate`メソッドは，グラフにテキストや矢印などを加えます．
 
-# In[10]:
+# In[12]:
 
 
 axe_bob.annotate('arrowstyle', 
@@ -115,7 +145,7 @@ display(fig)
 
 # figureクラスの`add_axes`メソッドは，新たに`axes`を加えます．
 
-# In[11]:
+# In[13]:
 
 
 axe_kotaro = fig.add_axes([.65, .2, .2, .2])
@@ -125,7 +155,7 @@ display(fig)
 
 # `savefig`関数は，キャンバスを画像ファイルに保存します．
 
-# In[12]:
+# In[14]:
 
 
 plt.savefig('day08.png')
